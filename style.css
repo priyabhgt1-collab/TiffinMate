@@ -1,0 +1,316 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f5f8f3;
+  color: #26352a;
+}
+
+/* NAVBAR */
+.navbar {
+  height: 70px;
+  padding: 0 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  border-bottom: 1px solid #e5ebe4;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 25px;
+  font-weight: bold;
+  color: #286b32;
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #35453a;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.nav-links a:hover {
+  color: #2e7d32;
+}
+
+/* HERO */
+.hero {
+  min-height: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 60px 20px;
+
+  background:
+    linear-gradient(
+      rgba(31, 75, 38, 0.78),
+      rgba(31, 75, 38, 0.78)
+    ),
+    url("./images/rajma-rice.jpg");
+
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-content {
+  max-width: 750px;
+  color: white;
+}
+
+.welcome {
+  font-size: 14px;
+  letter-spacing: 3px;
+  font-weight: bold;
+  margin-bottom: 18px;
+}
+
+.hero h1 {
+  font-size: 52px;
+  line-height: 1.15;
+  margin-bottom: 20px;
+}
+
+.hero-text {
+  font-size: 18px;
+  line-height: 1.7;
+  max-width: 650px;
+  margin: auto;
+  margin-bottom: 30px;
+}
+
+.hero-button {
+  display: inline-block;
+  text-decoration: none;
+  background: white;
+  color: #286b32;
+  padding: 14px 25px;
+  border-radius: 10px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.hero-button:hover {
+  transform: translateY(-3px);
+}
+
+/* MAIN */
+main {
+  max-width: 1200px;
+  margin: auto;
+  padding: 70px 20px;
+}
+
+/* SECTION HEADING */
+.section-heading {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.section-heading p,
+.about-small {
+  color: #4d8b54;
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+
+.section-heading h2 {
+  font-size: 32px;
+  color: #245c2c;
+  margin-bottom: 10px;
+}
+
+.section-heading span {
+  color: #6d766f;
+}
+
+/* MEAL GRID */
+#mealList {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+/* MEAL CARD */
+.meal-card {
+  background: white;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid #e5ebe4;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.07);
+  transition: 0.3s ease;
+}
+
+.meal-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+.meal-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
+.meal-info {
+  padding: 22px;
+}
+
+.meal-info h3 {
+  color: #245c2c;
+  font-size: 21px;
+  margin-bottom: 8px;
+}
+
+.meal-day {
+  color: #4d8b54;
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+.meal-info p:not(.meal-day) {
+  color: #68716b;
+  line-height: 1.6;
+  min-height: 50px;
+  margin-bottom: 18px;
+}
+
+/* BUTTON */
+.meal-info button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 9px;
+  background: #2e7d32;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.meal-info button:hover {
+  background: #1b5e20;
+  transform: translateY(-2px);
+}
+
+/* ABOUT */
+.about-section {
+  margin-top: 70px;
+}
+
+.about-box {
+  background: white;
+  border-radius: 20px;
+  padding: 45px;
+  text-align: center;
+  border: 1px solid #e5ebe4;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.05);
+}
+
+.about-box h2 {
+  color: #245c2c;
+  font-size: 28px;
+  margin-bottom: 15px;
+}
+
+.about-box > p:last-child {
+  max-width: 750px;
+  margin: auto;
+  color: #68716b;
+  line-height: 1.7;
+}
+
+/* FOOTER */
+footer {
+  background: #203d26;
+  color: white;
+  text-align: center;
+  padding: 35px 20px;
+}
+
+footer h3 {
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+
+footer p {
+  color: #d8e3d9;
+}
+
+footer .copyright {
+  margin-top: 15px;
+  font-size: 13px;
+  color: #aebcaf;
+}
+
+/* TABLET */
+@media (max-width: 900px) {
+  #mealList {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hero h1 {
+    font-size: 42px;
+  }
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+  .navbar {
+    padding: 0 20px;
+  }
+
+  .nav-links {
+    gap: 12px;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+  }
+
+  .hero {
+    min-height: 430px;
+  }
+
+  .hero h1 {
+    font-size: 36px;
+  }
+
+  .hero-text {
+    font-size: 16px;
+  }
+
+  #mealList {
+    grid-template-columns: 1fr;
+  }
+
+  .section-heading h2 {
+    font-size: 26px;
+  }
+
+  .about-box {
+    padding: 30px 20px;
+  }
+}
