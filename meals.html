@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TiffinMate - Meals</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f6f8f4;
+            color: #26352a;
+        }
+
+        /* NAVBAR */
+        header {
+            background: #2f7d4a;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.12);
+        }
+
+        .logo {
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        nav {
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        nav a:hover {
+            color: #dff5df;
+        }
+
+        /* HERO */
+        .hero {
+            text-align: center;
+            padding: 55px 20px 40px;
+            background: linear-gradient(135deg, #e9f7e8, #ffffff);
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            color: #24643a;
+            margin-bottom: 12px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #66736a;
+            max-width: 650px;
+            margin: auto;
+            line-height: 1.6;
+        }
+
+        /* MEALS */
+        .meals-section {
+            padding: 45px 7%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .section-title h2 {
+            font-size: 30px;
+            color: #24643a;
+            margin-bottom: 8px;
+        }
+
+        .section-title p {
+            color: #707a72;
+        }
+
+        .meal-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
+        .meal-card {
+            background: white;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.09);
+            transition: 0.3s ease;
+        }
+
+        .meal-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.14);
+        }
+
+        .meal-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .meal-content {
+            padding: 20px;
+        }
+
+        .meal-content h3 {
+            color: #24643a;
+            font-size: 22px;
+            margin-bottom: 9px;
+        }
+
+        .meal-content p {
+            color: #68736c;
+            line-height: 1.5;
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        .meal-btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 9px;
+            background: #2f7d4a;
+            color: white;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .meal-btn:hover {
+            background: #24643a;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #1f4f30;
+            color: white;
+            text-align: center;
+            padding: 25px;
+            margin-top: 35px;
+        }
+
+        footer p {
+            margin: 5px;
+            font-size: 14px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .meal-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav {
+                gap: 14px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .meal-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .meals-section {
+                padding: 35px 5%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header>
+
+        <div class="logo">
+            🍱 TiffinMate
+        </div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="meals.html">Meals</a>
+            <a href="planner.html">Planner</a>
+            <a href="favourites.html">Favourites</a>
+            <a href="shopping.html">Shopping</a>
+        </nav>
+
+    </header>
+
+
+    <!-- HERO -->
+    <section class="hero">
+
+        <h1>Choose Your Meal 🍽️</h1>
+
+        <p>
+            Explore simple, delicious and vegetarian tiffin options
+            planned specially for your college routine.
+        </p>
+
+    </section>
+
+
+    <!-- MEALS -->
+    <section class="meals-section">
+
+        <div class="section-title">
+
+            <h2>Weekly Tiffin Meals</h2>
+
+            <p>
+                Choose your favourite meal and add it to your planner.
+            </p>
+
+        </div>
+
+
+        <div class="meal-grid">
+
+
+            <!-- RAJMA RICE -->
+            <div class="meal-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=800&q=80"
+                    alt="Rajma Rice"
+                >
+
+                <div class="meal-content">
+
+                    <h3>🍛 Rajma Rice</h3>
+
+                    <p>
+                        Comforting rajma with steamed rice, perfect
+                        for a filling homemade college tiffin.
+                    </p>
+
+                    <button
+                        class="meal-btn"
+                        onclick="selectMeal('Rajma Rice')">
+                        Select Meal
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- VEG SANDWICH -->
+            <div class="meal-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=800&q=80"
+                    alt="Veg Sandwich"
+                >
+
+                <div class="meal-content">
+
+                    <h3>🥪 Veg Sandwich</h3>
+
+                    <p>
+                        Fresh vegetables layered with bread for
+                        a quick and easy tiffin option.
+                    </p>
+
+                    <button
+                        class="meal-btn"
+                        onclick="selectMeal('Veg Sandwich')">
+                        Select Meal
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- PANEER ROLL -->
+            <div class="meal-card">
+
+                <img
+                    src="https://st2.depositphotos.com/5653638/46335/i/450/depositphotos_463351164-stock-photo-cottage-cheese-paneer-kathi-roll.jpg"
+                    alt="Paneer Roll"
+                >
+
+                <div class="meal-content">
+
+                    <h3>🌯 Paneer Roll</h3>
+
+                    <p>
+                        Soft roti filled with delicious paneer
+                        and vegetables for a tasty tiffin.
+                    </p>
+
+                    <button
+                        class="meal-btn"
+                        onclick="selectMeal('Paneer Roll')">
+                        Select Meal
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- VEG PASTA -->
+            <div class="meal-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=800&q=80"
+                    alt="Veg Pasta"
+                >
+
+                <div class="meal-content">
+
+                    <h3>🍝 Veg Pasta</h3>
+
+                    <p>
+                        Delicious pasta mixed with fresh vegetables,
+                        perfect for a fun college lunch.
+                    </p>
+
+                    <button
+                        class="meal-btn"
+                        onclick="selectMeal('Veg Pasta')">
+                        Select Meal
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- CHOLE SALAD -->
+            <div class="meal-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80"
+                    alt="Chole Salad"
+                >
+
+                <div class="meal-content">
+
+                    <h3>🥗 Chole Salad</h3>
+
+                    <p>
+                        Chickpeas combined with fresh vegetables
+                        for a light and healthy tiffin.
+                    </p>
+
+                    <button
+                        class="meal-btn"
+                        onclick="selectMeal('Chole Salad')">
+                        Select Meal
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- ALOO PARATHA -->
+            <div class="meal-card">
+
+                <img
+                    src="https://b.zmtcdn.com/data/pictures/3/22700563/177818125399d3737c-00a9-4be4-ae76-a980bbdfb6bb.png"
+                    alt="Aloo Paratha"
+                >
+
+                <div class="meal-content">
+
+                    <h3>🫓 Aloo Paratha</h3>
+
+                    <p>
+                        Soft stuffed potato paratha, a classic
+                        homemade option for your tiffin.
+                    </p>
+
+                    <button
+                        class="meal-btn"
+                        onclick="selectMeal('Aloo Paratha')">
+                        Select Meal
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- VEG PULAO -->
+            <div class="meal-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1596560548464-f010549b84d7?auto=format&fit=crop&w=800&q=80"
+                    alt="Veg Pulao"
+                >
+
+                <div class="meal-content">
+
+                    <h3>🍚 Veg Pulao</h3>
+
+                    <p>
+                        Fragrant rice cooked with colourful vegetables
+                        and mild spices.
+                    </p>
+
+                    <button
+                        class="meal-btn"
+                        onclick="selectMeal('Veg Pulao')">
+                        Select Meal
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <p>
+            <strong>🍱 TiffinMate</strong>
+        </p>
+
+        <p>
+            Plan smart. Eat homemade. Stay happy.
+        </p>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+    <script>
+
+        async function selectMeal(mealName) {
+
+            try {
+
+                const response = await fetch(
+                    "/api/select-meal",
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+
+                        body: JSON.stringify({
+                            meal: mealName
+                        })
+                    }
+                );
+
+                if (response.ok) {
+
+                    alert(
+                        mealName +
+                        " selected successfully! 🍱"
+                    );
+
+                } else {
+
+                    alert(
+                        "Meal could not be selected."
+                    );
+
+                }
+
+            } catch (error) {
+
+                console.error(error);
+
+                alert(
+                    mealName +
+                    " selected! Backend connection check kar lena."
+                );
+
+            }
+
+        }
+
+    </script>
+
+</body>
+</html>
