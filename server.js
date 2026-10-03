@@ -17,6 +17,11 @@ mongoose
   .then(() => console.log("MongoDB Connected"))
   .catch((error) => console.log("MongoDB Error:", error));
 
+
+// =========================
+// MEAL SCHEMA
+// =========================
+
 const mealSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -30,6 +35,11 @@ const mealSchema = new mongoose.Schema({
 
 const Meal = mongoose.model("Meal", mealSchema);
 
+
+// =========================
+// FAVOURITE SCHEMA
+// =========================
+
 const favouriteSchema = new mongoose.Schema({
   meal: {
     type: String,
@@ -38,6 +48,11 @@ const favouriteSchema = new mongoose.Schema({
 });
 
 const Favourite = mongoose.model("Favourite", favouriteSchema);
+
+
+// =========================
+// SHOPPING SCHEMA
+// =========================
 
 const shoppingSchema = new mongoose.Schema({
   item: {
@@ -49,18 +64,25 @@ const shoppingSchema = new mongoose.Schema({
 const Shopping = mongoose.model("Shopping", shoppingSchema);
 
 
+// =========================
 // HOME
+// =========================
+
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
 
+// =========================
 // GET ALL MEALS
+// =========================
+
 app.get("/api/meals", async (req, res) => {
   try {
     const meals = await Meal.find();
 
     res.json(meals);
+
   } catch (error) {
     res.status(500).json({
       message: "Unable to fetch meals",
@@ -70,7 +92,10 @@ app.get("/api/meals", async (req, res) => {
 });
 
 
+// =========================
 // ADD MEAL
+// =========================
+
 app.post("/api/meals", async (req, res) => {
   try {
     const { name, day } = req.body;
@@ -102,7 +127,41 @@ app.post("/api/meals", async (req, res) => {
 });
 
 
+// =========================
+// SELECT MEAL
+// =========================
+
+app.post("/api/select-meal", async (req, res) => {
+  try {
+
+    const mealName = req.body.mealName || req.body.meal;
+
+    if (!mealName) {
+      return res.status(400).json({
+        message: "Meal name is required"
+      });
+    }
+
+    res.json({
+      message: "Meal selected successfully",
+      meal: mealName
+    });
+
+  } catch (error) {
+
+    res.status(500).json({
+      message: "Unable to select meal",
+      error: error.message
+    });
+
+  }
+});
+
+
+// =========================
 // ADD FAVOURITE
+// =========================
+
 app.post("/api/favourite", async (req, res) => {
   try {
     const { meal } = req.body;
@@ -144,25 +203,35 @@ app.post("/api/favourite", async (req, res) => {
 });
 
 
+// =========================
 // GET FAVOURITES
+// =========================
+
 app.get("/api/favourites", async (req, res) => {
   try {
+
     const favourites = await Favourite.find();
 
     res.json(favourites);
 
   } catch (error) {
+
     res.status(500).json({
       message: "Unable to fetch favourites",
       error: error.message
     });
+
   }
 });
 
 
+// =========================
 // DELETE FAVOURITE
+// =========================
+
 app.delete("/api/favourites/:id", async (req, res) => {
   try {
+
     const { id } = req.params;
 
     await Favourite.findByIdAndDelete(id);
@@ -172,17 +241,23 @@ app.delete("/api/favourites/:id", async (req, res) => {
     });
 
   } catch (error) {
+
     res.status(500).json({
       message: "Unable to remove favourite",
       error: error.message
     });
+
   }
 });
 
 
+// =========================
 // ADD SHOPPING ITEM
+// =========================
+
 app.post("/api/shopping", async (req, res) => {
   try {
+
     const { item } = req.body;
 
     if (!item) {
@@ -203,31 +278,42 @@ app.post("/api/shopping", async (req, res) => {
     });
 
   } catch (error) {
+
     res.status(500).json({
       message: "Unable to add shopping item",
       error: error.message
     });
+
   }
 });
 
 
+// =========================
 // GET SHOPPING LIST
+// =========================
+
 app.get("/api/shopping", async (req, res) => {
   try {
+
     const shoppingList = await Shopping.find();
 
     res.json(shoppingList);
 
   } catch (error) {
+
     res.status(500).json({
       message: "Unable to fetch shopping list",
       error: error.message
     });
+
   }
 });
 
 
+// =========================
 // START SERVER
+// =========================
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
