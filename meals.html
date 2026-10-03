@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TiffinMate | Meals</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f8f5;
+            color: #24352a;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        header {
+            background: #ffffff;
+            padding: 17px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .logo {
+            color: #287a45;
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        nav {
+            display: flex;
+            gap: 26px;
+        }
+
+        nav a {
+            color: #35443a;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: #287a45;
+        }
+
+        /* ================= HERO ================= */
+
+        .hero {
+            background:
+                linear-gradient(
+                    rgba(28, 87, 48, 0.92),
+                    rgba(28, 87, 48, 0.92)
+                ),
+                url("images/rajma-rice.jpg");
+
+            background-size: cover;
+            background-position: center;
+
+            text-align: center;
+            color: white;
+
+            padding: 75px 20px;
+        }
+
+        .hero h1 {
+            font-size: 44px;
+            margin-bottom: 14px;
+        }
+
+        .hero p {
+            max-width: 680px;
+            margin: auto;
+            font-size: 17px;
+            line-height: 1.7;
+            opacity: 0.92;
+        }
+
+        /* ================= INTRO ================= */
+
+        .intro {
+            text-align: center;
+            padding: 45px 20px 15px;
+        }
+
+        .intro h2 {
+            color: #24643a;
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .intro p {
+            color: #6d786f;
+            font-size: 15px;
+        }
+
+        /* ================= MEALS ================= */
+
+        .meals-section {
+            padding: 35px 7% 65px;
+        }
+
+        .meal-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .meal-card {
+            background: white;
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid #e3ebe5;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.07);
+            transition: 0.3s ease;
+        }
+
+        .meal-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+        }
+
+        .meal-image {
+            position: relative;
+            height: 220px;
+            overflow: hidden;
+            background: #e8eee9;
+        }
+
+        .meal-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .meal-card:hover .meal-image img {
+            transform: scale(1.05);
+        }
+
+        .day-badge {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            background: white;
+            color: #287a45;
+            padding: 7px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+        }
+
+        .meal-content {
+            padding: 21px;
+        }
+
+        .meal-content h3 {
+            color: #24643a;
+            font-size: 21px;
+            margin-bottom: 10px;
+        }
+
+        .meal-content p {
+            color: #6b766e;
+            font-size: 14px;
+            line-height: 1.6;
+            min-height: 67px;
+            margin-bottom: 18px;
+        }
+
+        .meal-btn {
+            width: 100%;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 10px;
+            background: #287a45;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .meal-btn:hover {
+            background: #1f6338;
+        }
+
+        .meal-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* ================= BOTTOM INFO ================= */
+
+        .info-box {
+            max-width: 1200px;
+            margin: 0 auto 60px;
+            padding: 30px;
+            background: #eaf5ec;
+            border: 1px solid #d7e8da;
+            border-radius: 18px;
+            text-align: center;
+        }
+
+        .info-box h3 {
+            color: #24643a;
+            margin-bottom: 9px;
+            font-size: 22px;
+        }
+
+        .info-box p {
+            color: #657168;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #173d25;
+            color: white;
+            text-align: center;
+            padding: 32px 20px;
+        }
+
+        footer h3 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        footer p {
+            font-size: 14px;
+            opacity: 0.85;
+            margin: 5px;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 950px) {
+            .meal-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 650px) {
+
+            header {
+                flex-direction: column;
+                gap: 14px;
+            }
+
+            nav {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero {
+                padding: 60px 20px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 15px;
+            }
+
+            .intro h2 {
+                font-size: 26px;
+            }
+
+            .meal-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .meals-section {
+                padding-left: 5%;
+                padding-right: 5%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header>
+
+        <div class="logo">
+            🍱 TiffinMate
+        </div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="meals.html" class="active">Meals</a>
+            <a href="favourites.html">Favourites</a>
+            <a href="admin.html">Admin</a>
+        </nav>
+
+    </header>
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero">
+
+        <h1>Choose Your Meal 🍽️</h1>
+
+        <p>
+            Explore delicious vegetarian tiffin options
+            planned specially for your college routine.
+        </p>
+
+    </section>
+
+
+    <!-- ================= INTRO ================= -->
+
+    <section class="intro">
+
+        <h2>Weekly Tiffin Meals</h2>
+
+        <p>
+            Choose your favourite meal and save it for later.
+        </p>
+
+    </section>
+
+
+    <!-- ================= MEALS ================= -->
+
+    <section class="meals-section">
+
+        <div class="meal-grid">
+
+
+            <!-- RAJMA RICE -->
+
+            <div class="meal-card">
+
+                <div class="meal-image">
+
+                    <img
+                        src="images/rajma-rice.jpg"
+                        alt="Rajma Rice"
+                    >
+
+                    <span class="day-badge">
+                        Monday
+                    </span>
+
+                </div>
+
+                <div class="meal-content">
+
+                    <h3>🍛 Rajma Rice</h3>
+
+                    <p>
+                        Comforting rajma with steamed rice,
+                        perfect for a filling homemade college tiffin.
+                    </p>
+
+                    <button
+                        class="meal-btn"
+                        onclick="addToFavourite('Rajma Rice')">
+
+                        ❤️ Add to Favourites
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- VEG SANDWICH -->
+
+            <div class="meal-card">
+
+                <div class="meal-image">
+
+                    <img
+                        src="images/veg-sandwich.jpg"
+                        alt="Veg Sandwich"
+                    >
+
+                    <span class="day-badge">
+                        Tuesday
+                    </span>
+
+                </div>
+
+                <div class="meal-content">
+
+                    <h3>🥪 Veg Sandwich</h3>
+
+                    <p>
+                        Fresh vegetables layered with bread
+                        for a quick and easy tiffin option.
+                    </p>
+
+                    <button
+                        class="meal-btn"
+                        onclick="addToFavourite('Veg Sandwich')">
+
+                        ❤️ Add to Favourites
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- PANEER KATHI ROLL -->
+
+            <div class="meal-card">
+
+                <div class="meal-image">
+
+                    <img
+                        src="images/paneer-kathi-roll.jpg"
+                        alt="Paneer Kathi Roll"
+                    >
+
+                    <span class="day-badge">
+                        Wednesday
+                    </span>
+
+                </div>
+
+                <div class="meal-content">
+
+                    <h3>🌯 Paneer Kathi Roll</h3>
+
+                    <p>
+                        Soft roll filled with delicious paneer
+                        and vegetables for a tasty tiffin.
+                    </p>
+
+                    <button
+                        class="meal-btn"
+                        onclick="addToFavourite('Paneer Kathi Roll')">
+
+                        ❤️ Add to Favourites
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- VEG PASTA -->
+
+            <div class="meal-card">
+
+                <div class="meal-image">
+
+                    <img
+                        src="images/veg-pasta.jpg"
+                        alt="Veg Pasta"
+                    >
+
+                    <span class="day-badge">
+                        Thursday
+                    </span>
+
+                </div>
+
+                <div class="meal-content">
+
+                    <h3>🍝 Veg Pasta</h3>
+
+                    <p>
+                        Delicious pasta mixed with fresh vegetables,
+                        perfect for a fun college lunch.
+                    </p>
+
+                    <button
+                        class="meal-btn"
+                        onclick="addToFavourite('Veg Pasta')">
+
+                        ❤️ Add to Favourites
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- CHOLE SALAD -->
+
+            <div class="meal-card">
+
+                <div class="meal-image">
+
+                    <img
+                        src="images/chole-salad.jpg"
+                        alt="Chole Salad"
+                    >
+
+                    <span class="day-badge">
+                        Friday
+                    </span>
+
+                </div>
+
+                <div class="meal-content">
+
+                    <h3>🥗 Chole Salad</h3>
+
+                    <p>
+                        Chickpeas combined with fresh vegetables
+                        for a light and tasty tiffin.
+                    </p>
+
+                    <button
+                        class="meal-btn"
+                        onclick="addToFavourite('Chole Salad')">
+
+                        ❤️ Add to Favourites
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- ALOO PARATHA -->
+
+            <div class="meal-card">
+
+                <div class="meal-image">
+
+                    <img
+                        src="images/aloo-prantha.jpg"
+                        alt="Aloo Paratha"
+                    >
+
+                    <span class="day-badge">
+                        Saturday
+                    </span>
+
+                </div>
+
+                <div class="meal-content">
+
+                    <h3>🫓 Aloo Paratha</h3>
+
+                    <p>
+                        Soft stuffed potato paratha,
+                        a classic homemade tiffin option.
+                    </p>
+
+                    <button
+                        class="meal-btn"
+                        onclick="addToFavourite('Aloo Paratha')">
+
+                        ❤️ Add to Favourites
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- VEG PULAO -->
+
+            <div class="meal-card">
+
+                <div class="meal-image">
+
+                    <img
+                        src="images/veg-pulao.jpg"
+                        alt="Veg Pulao"
+                    >
+
+                    <span class="day-badge">
+                        Sunday
+                    </span>
+
+                </div>
+
+                <div class="meal-content">
+
+                    <h3>🍚 Veg Pulao</h3>
+
+                    <p>
+                        Fragrant rice cooked with colourful
+                        vegetables and mild spices.
+                    </p>
+
+                    <button
+                        class="meal-btn"
+                        onclick="addToFavourite('Veg Pulao')">
+
+                        ❤️ Add to Favourites
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= INFO ================= -->
+
+    <div class="info-box">
+
+        <h3>🍱 Plan Your Tiffin Smartly</h3>
+
+        <p>
+            Save your favourite meals and manage your
+            weekly tiffin choices easily with TiffinMate.
+        </p>
+
+    </div>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <h3>🍱 TiffinMate</h3>
+
+        <p>
+            Plan smart. Eat homemade. Stay happy.
+        </p>
+
+        <p>
+            © 2026 TiffinMate
+        </p>
+
+    </footer>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+        async function addToFavourite(mealName) {
+
+            try {
+
+                const response = await fetch(
+                    "/api/favourite",
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+
+                        body: JSON.stringify({
+                            meal: mealName
+                        })
+                    }
+                );
+
+                const data = await response.json();
+
+                if (response.ok) {
+
+                    if (
+                        data.message ===
+                        "Already in favourites"
+                    ) {
+
+                        alert(
+                            mealName +
+                            " is already in your favourites ❤️"
+                        );
+
+                    } else {
+
+                        alert(
+                            mealName +
+                            " added to favourites ❤️"
+                        );
+
+                    }
+
+                } else {
+
+                    alert(
+                        "Could not add meal to favourites."
+                    );
+
+                }
+
+            } catch (error) {
+
+                console.error(error);
+
+                alert(
+                    "Server connection error. Please check if server is running."
+                );
+
+            }
+
+        }
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TiffinMate | Admin</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f8f5;
+            color: #222;
+        }
+
+        /* NAVBAR */
+
+        .navbar {
+            background: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 23px;
+            font-weight: bold;
+            color: #287a45;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover {
+            color: #287a45;
+        }
+
+        /* HEADER */
+
+        .hero {
+            background: linear-gradient(
+                rgba(24, 77, 43, 0.94),
+                rgba(24, 77, 43, 0.94)
+            );
+
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .hero h1 {
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            opacity: 0.9;
+        }
+
+        /* MAIN */
+
+        .container {
+            max-width: 1050px;
+            margin: 45px auto;
+            padding: 0 20px;
+        }
+
+        /* CARDS */
+
+        .card {
+            background: white;
+            padding: 28px;
+            border-radius: 18px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+            border: 1px solid #e6eee8;
+        }
+
+        .card h2 {
+            color: #287a45;
+            margin-bottom: 20px;
+        }
+
+        /* INPUT */
+
+        .add-box {
+            display: flex;
+            gap: 12px;
+        }
+
+        input {
+            flex: 1;
+            padding: 13px 15px;
+            border: 1px solid #d9e2dc;
+            border-radius: 9px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #287a45;
+        }
+
+        /* BUTTON */
+
+        button {
+            border: none;
+            padding: 11px 17px;
+            border-radius: 9px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .add-btn {
+            background: #287a45;
+            color: white;
+        }
+
+        .add-btn:hover {
+            background: #1f6338;
+        }
+
+        /* MEAL */
+
+        .meal,
+        .shopping-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 17px;
+            border: 1px solid #e8eee9;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            background: #fbfdfb;
+        }
+
+        .meal-name,
+        .ingredient-name {
+            font-size: 17px;
+            font-weight: bold;
+        }
+
+        .meal-day {
+            color: #287a45;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .edit-btn {
+            background: #edf2ff;
+        }
+
+        .delete-btn {
+            background: #ffe7e7;
+            color: #b32626;
+        }
+
+        #message {
+            margin-top: 15px;
+            font-weight: bold;
+            color: #287a45;
+        }
+
+        /* PLANNER */
+
+        .planner-item {
+            padding: 16px;
+            border: 1px solid #e8eee9;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            background: #fbfdfb;
+        }
+
+        .planner-day {
+            font-weight: bold;
+            color: #287a45;
+        }
+
+        .planner-meal {
+            margin-left: 10px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #173d25;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 60px;
+        }
+
+        footer h3 {
+            margin-bottom: 8px;
+        }
+
+        footer p {
+            opacity: 0.85;
+            margin-bottom: 5px;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 30px;
+            }
+
+            .add-box {
+                flex-direction: column;
+            }
+
+            .meal,
+            .shopping-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .actions {
+                width: 100%;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            🍱 TiffinMate
+        </div>
+
+        <div class="nav-links">
+
+            <a href="index.html">Home</a>
+
+            <a href="meals.html">Meals</a>
+
+            <a href="favourites.html">Favourites</a>
+
+            <a href="admin.html">Admin</a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <h1>⚙️ TiffinMate Admin</h1>
+
+        <p>
+            Manage meals and your shopping list
+        </p>
+
+    </section>
+
+
+    <main class="container">
+
+
+        <!-- ADD MEAL -->
+
+        <div class="card">
+
+            <h2>➕ Add New Meal</h2>
+
+            <div class="add-box">
+
+                <input
+                    type="text"
+                    id="mealName"
+                    placeholder="Enter meal name"
+                >
+
+                <button
+                    class="add-btn"
+                    onclick="addMeal()">
+
+                    Add Meal
+
+                </button>
+
+            </div>
+
+            <p id="message"></p>
+
+        </div>
+
+
+        <!-- MEALS -->
+
+        <div class="card">
+
+            <h2>🍽️ Meals</h2>
+
+            <div id="meals">
+                Loading meals...
+            </div>
+
+        </div>
+
+
+        <!-- PLANNER -->
+
+        <div class="card">
+
+            <h2>📅 Weekly Planner</h2>
+
+            <div id="planner">
+                Planner information will appear here.
+            </div>
+
+        </div>
+
+
+        <!-- SHOPPING -->
+
+        <div class="card">
+
+            <h2>🛒 Shopping List</h2>
+
+            <div class="add-box">
+
+                <input
+                    type="text"
+                    id="ingredientName"
+                    placeholder="Enter shopping item"
+                >
+
+                <button
+                    class="add-btn"
+                    onclick="addShopping()">
+
+                    Add Item
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <h2>🛍️ Saved Shopping Items</h2>
+
+            <div id="shopping">
+                Loading shopping list...
+            </div>
+
+        </div>
+
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <h3>🍱 TiffinMate</h3>
+
+        <p>
+            Plan smart. Eat homemade. Stay happy.
+        </p>
+
+        <p>
+            © 2026 TiffinMate
+        </p>
+
+    </footer>
+
+
+<script>
+
+/* =========================
+   LOAD MEALS
+========================= */
+
+async function loadMeals() {
+
+    try {
+
+        const response =
+            await fetch("https://tiffinmate-qsxx.render.com/api/meals");
+
+        const meals =
+            await response.json();
+
+        let html = "";
+
+        meals.forEach(function(meal) {
+
+            html += `
+
+                <div class="meal">
+
+                    <div>
+
+                        <div class="meal-name">
+                            🍱 ${meal.name}
+                        </div>
+
+                        <div class="meal-day">
+                            📅 ${meal.day || "Day not set"}
+                        </div>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        });
+
+        document.getElementById("meals").innerHTML =
+            html || "No meals found.";
+
+    } catch (error) {
+
+        console.error(error);
+
+        document.getElementById("meals").innerText =
+            "Unable to load meals.";
+
+    }
+
+}
+
+
+/* =========================
+   ADD MEAL
+========================= */
+
+async function addMeal() {
+
+    const name =
+        document.getElementById("mealName")
+        .value
+        .trim();
+
+    if (name === "") {
+
+        alert("Please enter meal name.");
+
+        return;
+
+    }
+
+    const day = prompt(
+        "Enter day for this meal:\nExample: Monday"
+    );
+
+    if (
+        day === null ||
+        day.trim() === ""
+    ) {
+
+        return;
+
+    }
+
+    try {
+
+        const response =
+            await fetch("https://tiffinmate-qsxx.render.com/api/meals", {
+
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+
+                    name: name,
+
+                    day: day.trim()
+
+                })
+
+            });
+
+
+        const data =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            document.getElementById("message")
+                .innerText =
+                "❌ " +
+                (data.message ||
+                "Unable to add meal.");
+
+            return;
+
+        }
+
+
+        document.getElementById("message")
+            .innerText =
+            "✅ Meal added successfully!";
+
+
+        document.getElementById("mealName")
+            .value = "";
+
+
+        loadMeals();
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        document.getElementById("message")
+            .innerText =
+            "❌ Server connection error.";
+
+    }
+
+}
+
+
+/* =========================
+   LOAD SHOPPING
+========================= */
+
+async function loadShopping() {
+
+    try {
+
+        const response =
+            await fetch("https://tiffinmate-qsxx.render.com/api/shopping");
+
+        const shopping =
+            await response.json();
+
+        let html = "";
+
+        shopping.forEach(function(item) {
+
+            html += `
+
+                <div class="shopping-item">
+
+                    <span class="ingredient-name">
+                        🥕 ${item.item}
+                    </span>
+
+                </div>
+
+            `;
+
+        });
+
+
+        document.getElementById("shopping")
+            .innerHTML =
+            html ||
+            "No shopping items found.";
+
+    } catch (error) {
+
+        console.error(error);
+
+        document.getElementById("shopping")
+            .innerText =
+            "Unable to load shopping list.";
+
+    }
+
+}
+
+
+/* =========================
+   ADD SHOPPING
+========================= */
+
+async function addShopping() {
+
+    const item =
+        document.getElementById("ingredientName")
+        .value
+        .trim();
+
+    if (item === "") {
+
+        alert("Please enter shopping item.");
+
+        return;
+
+    }
+
+
+    try {
+
+        const response =
+            await fetch("/api/shopping", {
+
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+
+                    item: item
+
+                })
+
+            });
+
+
+        const data =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            document.getElementById("message")
+                .innerText =
+                "❌ " +
+                (data.message ||
+                "Unable to add item.");
+
+            return;
+
+        }
+
+
+        document.getElementById("message")
+            .innerText =
+            "✅ Shopping item added!";
+
+
+        document.getElementById("ingredientName")
+            .value = "";
+
+
+        loadShopping();
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        document.getElementById("message")
+            .innerText =
+            "❌ Server connection error.";
+
+    }
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+loadMeals();
+
+loadShopping();
+
+</script>
+
+</body>
+
+</html>
