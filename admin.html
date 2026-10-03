@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 
@@ -715,4 +716,713 @@ loadShopping();
 
 </body>
 
+=======
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TiffinMate Admin</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f7fb;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        header {
+            background: #222;
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+        }
+
+        header h1 {
+            margin-bottom: 8px;
+        }
+
+        header p {
+            opacity: 0.8;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .card h2 {
+            margin-bottom: 18px;
+        }
+
+        .add-box {
+            display: flex;
+            gap: 10px;
+        }
+
+        input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        button {
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .add-btn {
+            background: #222;
+            color: white;
+        }
+
+        .meal,
+        .shopping-item,
+        .planner-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .meal-name,
+        .ingredient-name {
+            font-size: 17px;
+            font-weight: bold;
+        }
+
+        .meal-day {
+            color: #4caf50;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .planner-day {
+            font-weight: bold;
+            color: #4caf50;
+        }
+
+        .planner-meal {
+            margin-left: 10px;
+        }
+
+        .actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .edit-btn {
+            background: #e9eefc;
+        }
+
+        .delete-btn {
+            background: #ffe5e5;
+        }
+
+        #message {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 600px) {
+
+            body {
+                padding: 15px;
+            }
+
+            .add-box {
+                flex-direction: column;
+            }
+
+            .meal,
+            .shopping-item,
+            .planner-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            .actions {
+                width: 100%;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <header>
+        <h1>🍱 TiffinMate Admin Panel</h1>
+        <p>Manage Meals, Planner and Shopping List</p>
+    </header>
+
+
+    <!-- ADD MEAL -->
+
+    <div class="card">
+
+        <h2>➕ Add New Meal</h2>
+
+        <div class="add-box">
+
+            <input
+                type="text"
+                id="mealName"
+                placeholder="Enter meal name"
+            >
+
+            <button
+                class="add-btn"
+                onclick="addMeal()">
+                Add Meal
+            </button>
+
+        </div>
+
+        <p id="message"></p>
+
+    </div>
+
+
+    <!-- MEALS -->
+
+    <div class="card">
+
+        <h2>🍽️ Meals</h2>
+
+        <div id="meals">
+            Loading meals...
+        </div>
+
+    </div>
+
+
+    <!-- PLANNER -->
+
+    <div class="card">
+
+        <h2>📅 Weekly Planner</h2>
+
+        <div id="planner">
+            Planner will appear here.
+        </div>
+
+    </div>
+
+
+    <!-- ADD SHOPPING -->
+
+    <div class="card">
+
+        <h2>🛒 Add Shopping Item</h2>
+
+        <div class="add-box">
+
+            <input
+                type="text"
+                id="ingredientName"
+                placeholder="Enter ingredient"
+            >
+
+            <button
+                class="add-btn"
+                onclick="addShopping()">
+                Add Item
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- SHOPPING -->
+
+    <div class="card">
+
+        <h2>🛍️ Shopping List</h2>
+
+        <div id="shopping">
+            Loading shopping list...
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+
+// =====================================================
+// LOAD MEALS
+// =====================================================
+
+async function loadMeals() {
+
+    try {
+
+        const response = await fetch("/api/meals");
+
+        if (!response.ok) {
+            throw new Error("Unable to load meals");
+        }
+
+        const meals = await response.json();
+
+        let mealHTML = "";
+
+        meals.forEach(function(meal) {
+
+            mealHTML += `
+                <div class="meal">
+
+                    <div>
+
+                        <div class="meal-name">
+                            🍱 ${meal.name}
+                        </div>
+
+                        <div class="meal-day">
+                            📅 ${meal.day || "Day not set"}
+                        </div>
+
+                    </div>
+
+                    <div class="actions">
+
+                        <button
+                            class="edit-btn"
+                            onclick="editMeal('${meal._id}', '${escapeText(meal.name)}')">
+                            ✏️ Edit
+                        </button>
+
+                        <button
+                            class="delete-btn"
+                            onclick="deleteMeal('${meal._id}')">
+                            🗑️ Delete
+                        </button>
+
+                    </div>
+
+                </div>
+            `;
+
+        });
+
+        document.getElementById("meals").innerHTML =
+            mealHTML || "No meals found.";
+
+    } catch (error) {
+
+        console.error(error);
+
+        document.getElementById("meals").innerText =
+            "❌ Failed to load meals.";
+
+    }
+
+}
+
+
+// =====================================================
+// ADD MEAL
+// =====================================================
+
+async function addMeal() {
+
+    const name =
+        document.getElementById("mealName").value.trim();
+
+    if (name === "") {
+
+        alert("Please enter meal name.");
+
+        return;
+    }
+
+
+    const day = prompt(
+        "Enter day for this meal:\nExample: Monday"
+    );
+
+
+    if (day === null || day.trim() === "") {
+
+        return;
+    }
+
+
+    try {
+
+        const response = await fetch("/api/meals", {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+
+                name: name,
+
+                day: day.trim()
+
+            })
+
+        });
+
+
+        const data = await response.json();
+
+
+        if (!response.ok) {
+
+            document.getElementById("message").innerText =
+                "❌ " + (data.message || "Unable to add meal.");
+
+            return;
+        }
+
+
+        document.getElementById("message").innerText =
+            "✅ Meal added successfully!";
+
+
+        document.getElementById("mealName").value = "";
+
+
+        loadMeals();
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        document.getElementById("message").innerText =
+            "❌ Server connection error.";
+
+    }
+
+}
+
+
+// =====================================================
+// EDIT MEAL
+// =====================================================
+
+async function editMeal(id, oldName) {
+
+    const newName = prompt(
+        "Enter new meal name:",
+        oldName
+    );
+
+
+    if (
+        newName === null ||
+        newName.trim() === ""
+    ) {
+
+        return;
+    }
+
+
+    try {
+
+        const response = await fetch(
+            "/api/meals/" + id,
+            {
+
+                method: "PUT",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+
+                    name: newName.trim()
+
+                })
+
+            }
+        );
+
+
+        const data = await response.json();
+
+
+        document.getElementById("message").innerText =
+            data.message || "Meal updated.";
+
+
+        loadMeals();
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        document.getElementById("message").innerText =
+            "❌ Unable to edit meal.";
+
+    }
+
+}
+
+
+// =====================================================
+// DELETE MEAL
+// =====================================================
+
+async function deleteMeal(id) {
+
+    const confirmDelete = confirm(
+        "Are you sure you want to delete this meal?"
+    );
+
+
+    if (!confirmDelete) {
+
+        return;
+    }
+
+
+    try {
+
+        const response = await fetch(
+            "/api/meals/" + id,
+            {
+
+                method: "DELETE"
+
+            }
+        );
+
+
+        const data = await response.json();
+
+
+        document.getElementById("message").innerText =
+            data.message || "Meal deleted.";
+
+
+        loadMeals();
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        document.getElementById("message").innerText =
+            "❌ Unable to delete meal.";
+
+    }
+
+}
+
+
+// =====================================================
+// LOAD SHOPPING LIST
+// =====================================================
+
+async function loadShopping() {
+
+    try {
+
+        const response =
+            await fetch("/api/shopping");
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Unable to load shopping list"
+            );
+
+        }
+
+
+        const shopping =
+            await response.json();
+
+
+        let shoppingHTML = "";
+
+
+        shopping.forEach(function(item) {
+
+            shoppingHTML += `
+
+                <div class="shopping-item">
+
+                    <span class="ingredient-name">
+                        🥕 ${item.item}
+                    </span>
+
+                </div>
+
+            `;
+
+        });
+
+
+        document.getElementById("shopping").innerHTML =
+            shoppingHTML || "No shopping items found.";
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        document.getElementById("shopping").innerText =
+            "❌ Failed to load shopping list.";
+
+    }
+
+}
+
+
+// =====================================================
+// ADD SHOPPING ITEM
+// =====================================================
+
+async function addShopping() {
+
+    const ingredient =
+        document
+        .getElementById("ingredientName")
+        .value
+        .trim();
+
+
+    if (ingredient === "") {
+
+        alert("Please enter ingredient.");
+
+        return;
+    }
+
+
+    try {
+
+        const response =
+            await fetch("/api/shopping", {
+
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+
+                    item: ingredient
+
+                })
+
+            });
+
+
+        const data =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            document.getElementById("message").innerText =
+                "❌ " + (data.message || "Unable to add item.");
+
+            return;
+        }
+
+
+        document.getElementById("message").innerText =
+            "✅ Shopping item added!";
+
+
+        document.getElementById("ingredientName").value =
+            "";
+
+
+        loadShopping();
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        document.getElementById("message").innerText =
+            "❌ Server connection error.";
+
+    }
+
+}
+
+
+// =====================================================
+// ESCAPE TEXT
+// =====================================================
+
+function escapeText(text) {
+
+    return text
+        .replace(/\\/g, "\\\\")
+        .replace(/'/g, "\\'");
+
+}
+
+
+// =====================================================
+// LOAD EVERYTHING
+// =====================================================
+
+async function loadData() {
+
+    await loadMeals();
+
+    await loadShopping();
+
+}
+
+
+// START
+
+loadData();
+
+
+</script>
+
+</body>
+
+>>>>>>> 9ac9ed1d431e1113f1547ac6e9cd391af58c2325
 </html>
