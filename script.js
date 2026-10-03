@@ -87,7 +87,7 @@ function displayMeals() {
 
 async function addToFavourite(mealName) {
   try {
-    const response = await fetch("https://tiffinmate-qsxx.render.com/api/favourite", {
+    const response = await fetch("https://tiffinmate-qsxx.onrender.com/api/favourite", {
       method: "POST",
 
       headers: {
